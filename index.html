@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון משכנתא - מרובה מסלולים</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+        }
+        .mortgage-calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tracks {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .track {
+            width: 30%;
+            margin: 0 1%;
+        }
+        input[type="number"] {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        .results {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .track-result {
+            width: 30%;
+            margin: 0 1%;
+        }
+        .amortization-table {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .summary-tables {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mortgage-calculator">
+        <h1>מחשבון משכנתא - מרובה מסלולים</h1>
+        <div class="tracks">
+            <div class="track">
+                <h2>מסלול 1</h2>
+                <label for="years1">מספר שנים:</label>
+                <input type="number" id="years1" min="1" required><br>
+                <label for="interest1">ריבית שנתית (%):</label>
+                <input type="number" id="interest1" step="0.01" min="0" required><br>
+                <label for="amount1">גובה המשכנתא:</label>
+                <input type="number" id="amount1" min="1" required><br>
+            </div>
+            <div class="track">
+                <h2>מסלול 2</h2>
+                <label for="years2">מספר שנים:</label>
+                <input type="number" id="years2" min="1" required><br>
+                <label for="interest2">ריבית שנתית (%):</label>
+                <input type="number" id="interest2" step="0.01" min="0" required><br>
+                <label for="amount2">גובה המשכנתא:</label>
+                <input type="number" id="amount2" min="1" required><br>
+            </div>
+            <div class="track">
+                <h2>מסלול 3</h2>
+                <label for="years3">מספר שנים:</label>
+                <input type="number" id="years3" min="1" required><br>
+                <label for="interest3">ריבית שנתית (%):</label>
+                <input type="number" id="interest3" step="0.01" min="0" required><br>
+                <label for="amount3">גובה המשכנתא:</label>
+                <input type="number" id="amount3" min="1" required><br>
+            </div>
+        </div>
+        <button type="button" onclick="calculateAllTracks()">חשב את כל המסלולים</button>
+        <div class="results">
+            <div class="track-result" id="result1"></div>
+            <div class="track-result" id="result2"></div>
+            <div class="track-result" id="result3"></div>
+        </div>
+        <div class="summary-tables">
+            <h2>טבלה מסכמת של פרטים בנקודות זמן מרכזיות</h2>
+            <table id="summaryTable">
+                <tr>
+                    <th>נקודת זמן</th>
+                    <th>קרן שנפרעה</th>
+                    <th>קרן שנפרעה (%)</th>
+                    <th>ריבית ששולמה</th>
+                    <th>יתרה נותרת</th>
+                </tr>
+            </table>
+            <h2>טבלה מסכמת של לוח שפיצר מלא</h2>
+            <table id="amortizationSummaryTable">
+                <tr>
+                    <th>חודש</th>
+                    <th>תשלום חודשי</th>
+                    <th>החזר ריבית</th>
+                    <th>החזר קרן</th>
+                    <th>יתרה נותרת</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
